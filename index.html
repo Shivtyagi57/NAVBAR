@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello Page</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React + Babel via CDN, so this runs directly in the browser -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    // demo data
+    const navLinks = [
+      { id: 1, label: "Home" },
+      { id: 2, label: "About" },
+      { id: 3, label: "Services" },
+      { id: 4, label: "Contact" },
+    ];
+
+    function Navbar() {
+      return (
+        <nav style={styles.nav}>
+          <span style={styles.logo}>MyApp</span>
+          <ul style={styles.links}>
+            {navLinks.map((link) => (
+              <li key={link.id}>{link.label}</li>
+            ))}
+          </ul>
+        </nav>
+      );
+    }
+
+    function Footer() {
+      return (
+        <footer style={styles.footer}>
+          <p style={{ margin: 0 }}>&copy; {new Date().getFullYear()} MyApp. All rights reserved.</p>
+        </footer>
+      );
+    }
+
+    function Page() {
+      return (
+        <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+          <Navbar />
+          <main style={{ flex: 1, textAlign: "center", padding: "60px 20px" }}>
+            <h1>Hello</h1>
+          </main>
+          <Footer />
+        </div>
+      );
+    }
+
+    const styles = {
+      nav: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "16px 24px",
+        background: "#222",
+        color: "#fff",
+      },
+      logo: { fontWeight: "bold", fontSize: "20px" },
+      links: { display: "flex", gap: "20px", listStyle: "none", margin: 0, padding: 0 },
+      footer: { textAlign: "center", padding: "16px 24px", background: "#222", color: "#fff" },
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<Page />);
+  </script>
+</body>
+</html>
